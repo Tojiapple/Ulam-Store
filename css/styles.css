@@ -75,54 +75,6 @@ p {
 footer {
     margin-top: 30px;
     font-size: 14px;
-    color: #555;
-    text-align: center;
-}
-
-/* Header styling: centered title and inline nav */
-.header-container header {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.header-container header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: #8B4513;
-    margin: 0 0 12px 0;
-    line-height: 1.2;
-}
-
-.header-container header nav {
-    margin: 0;
-}
-
-.header-container header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
-    gap: 18px;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-container header nav ul li {
-    margin: 0;
-}
-
-.header-container header nav ul li a.nav-link,
-.header-container header nav ul li a.nav-link:visited {
-    color: #8B4513;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-}
-
-.header-container header nav ul li a.nav-link:hover {
     color: #5C3D2E;
-    background: rgba(139, 69, 19, 0.08);
+    font-weight: 700;
 }

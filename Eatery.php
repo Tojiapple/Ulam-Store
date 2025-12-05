@@ -1,52 +1,23 @@
 <?php
-
-// Set page title for header
-$page_title = "The Ulam Store";
-
-// Include header with navigation
-include 'includes/header.php';
-
-// Include product data
-include 'stock.php';
-
 // Variables
 $name = "Rustine";
-$name = 'Guest';
-$name = 'Rustine';
-$price = '80';
+$price = 80;
 
-$item       = "Adobo";
-$stock      = 100;
-$wanted     = 4;
-$deliver    = true;
+$item = "Adobo";
+$stock = 40;
+$wanted = 4;
+$deliver = true;
 
-$can_buy    = (($wanted <= $stock) && ($deliver == true));
+$can_buy = ($wanted <= $stock) && $deliver;
 
-// Arrays - display products from stock
 $offers = [
     ['name' => 'Adobo', 'price' => 80, 'stock' => 40],
-    ['name' => 'Sinigang', 'price' => 80, 'stock' => 35],
-    ['name' => 'Kare-Kare', 'price' => 120, 'stock' => 20],
-    ['name' => 'Bicol Express', 'price' => 70, 'stock' => 25],
-    ['name' => 'Sisig', 'price' => 80, 'stock' => 12],
-    ['name' => 'Tinola', 'price' => 65, 'stock' => 8],
-    ['name' => 'Laing', 'price' => 40, 'stock' => 5],
+    ['name' => 'Sinigang', 'price' => 90, 'stock' => 32],
+    ['name' => 'Kare-Kare', 'price' => 130, 'stock' => 18],
+    ['name' => 'Bicol Express', 'price' => 100, 'stock' => 25],
 ];
 
-// Arrays
 $favorites = ['Adobo', 'Sinigang', 'Kare-Kare', 'Bicol Express'];
-
-// Variables
-$ulamCount = '5';
-$extraUlam = 2;
-
-// Operations
-$totalUlam = $ulamCount + $extraUlam;
-
-// Variables
-$isMember = true;
-$bonusUlam = $isMember + 1;
-$message = "You bought 1 ulam!";
 
 $cart = [
     ['name' => 'Adobo', 'price' => 80, 'qty' => 1],
@@ -54,22 +25,32 @@ $cart = [
     ['name' => 'Kare-Kare', 'price' => 130, 'qty' => 1],
 ];
 
-function computeTotal($cart) {
-    $sum = 0;
-    foreach ($cart as $c) {
-        $sum += $c['price'] * $c['qty'];
-    }
-    return $sum;
+$cartTotal = 0;
+foreach($cart as $c) {
+    $cartTotal += $c['price'] * $c['qty'];
 }
 
-$cartTotal = computeTotal($cart);
-
+$totalItems = count($cart);
 ?>
 
-    <h2>Welcome <?= $name; ?>!</h2>
-    <p>The cost of your ulam is ₱<?= $price; ?> per serving.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Ulam Store</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-    <h2>Available Ulam</h2>
+<body>
+
+<div class="container">
+
+    <h1>The Ulam Store</h1>
+
+    <h2>WELCOME <?= strtoupper($name) ?>!</h2>
+    <p>The cost of your ulam is ₱<?= $price ?> per serving.</p>
+
+    <h2>AVAILABLE ULAM</h2>
+
     <table>
         <tr>
             <th>Ulam</th>
@@ -77,33 +58,36 @@ $cartTotal = computeTotal($cart);
             <th>Stock</th>
         </tr>
 
-    <!-- Loops -->
-        <?php foreach ($offers as $food): ?>
+        <?php foreach($offers as $food): ?>
             <tr>
                 <td><?= $food['name'] ?></td>
                 <td>₱<?= $food['price'] ?></td>
                 <td><?= $food['stock'] ?></td>
             </tr>
         <?php endforeach; ?>
-
     </table>
 
-    <h2>Your Orders</h2>
-    <?php foreach ($cart as $c): ?> 
+    <h2>YOUR ORDERS</h2>
+
+    <?php foreach($cart as $c): ?>
         <p><?= $c['name'] ?> × <?= $c['qty'] ?> — ₱<?= $c['price'] * $c['qty'] ?></p>
     <?php endforeach; ?>
+
     <p><strong>Total: ₱<?= $cartTotal ?></strong></p>
 
-    <h2>Your Favorite Ulam</h2>
+    <h2>YOUR FAVORITE ULAM</h2>
     <p><?= $favorites[0] ?></p>
 
-    <h2>Extra Info</h2>
-    
-    <p>Can buy <?= $wanted ?> <?= $item ?>? <?= $can_buy ? "Yes" : "No" ?></p> <!-- Conditionals -->
+    <h2>EXTRA INFO</h2>
+    <p>Can buy <?= $wanted ?> <?= $item ?>? <?= $can_buy ? "Yes" : "No" ?></p>
+    <p>Total Items Ordered: <?= $totalItems ?></p>
 
-    <p>Total Ulam: <?= $totalUlam ?></p>
-    <p>Bonus for Ulam Members: <?= $bonusUlam ?></p>
-    <p><?= $message ?></p>
+    <footer>
+        Ulam Store © 2025 <br>
+        Contact: 09126929801
+    </footer>
 
-    
-    <?php include "includes/footer.php"; ?>
+</div>
+
+</body>
+</html>
